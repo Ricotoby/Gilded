@@ -1,0 +1,330 @@
+/* =========================================================
+   Gilded — a rounded, dark & gold theme for Jellyfin
+   Paste into: Dashboard > General > Custom CSS code
+   ========================================================= */
+
+/* Poppins font - only the 3 weights Jellyfin uses (must stay at the very top) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+  --radius: 20px;        /* corner roundness (6 subtle, 28 very round) */
+  --gold: #d4af37;       /* highlight color */
+  --outline: 3px;        /* highlight thickness */
+}
+
+/* ---------- Poppins everywhere (icons keep their own font) ---------- */
+body,
+h1, h2, h3,
+button,
+input,
+select,
+textarea,
+.MuiTypography-root,
+.MuiButtonBase-root {
+  font-family: 'Poppins', 'Noto Sans', sans-serif !important;
+}
+
+/* ---------- Cards / posters ---------- */
+/* Only the outer poster layer clips; inner layers inherit the shape */
+.cardScalable,
+.itemDetailImage,
+.listItemImage {
+  border-radius: var(--radius) !important;
+  overflow: hidden;
+}
+.cardBox,
+.cardImageContainer,
+.cardOverlayContainer {
+  border-radius: var(--radius) !important;
+}
+
+/* Remove Jellyfin's default blue focus border */
+.card:focus .cardBox {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+.card:focus { outline: none !important; }
+
+/* ---------- Buttons ---------- */
+.emby-button,
+.raised,
+.button-flat,
+.fab,
+.paper-icon-button-light {
+  border-radius: calc(var(--radius) * 0.6) !important;
+}
+
+/* Round play button on posters */
+.cardOverlayButton {
+  border-radius: 50% !important;
+}
+
+/* Pill-shaped buttons on the details page */
+.detailButton { border-radius: 999px !important; }
+.btnPlay.detailButton {
+  background: var(--gold) !important;
+  color: #111 !important;
+}
+
+/* ---------- Inputs & dropdowns ---------- */
+.emby-input,
+.emby-select,
+.emby-textarea {
+  border-radius: calc(var(--radius) * 0.5) !important;
+}
+
+/* ---------- Dialogs, menus, popups ---------- */
+.dialog,
+.formDialog,
+.actionSheet,
+.toast {
+  border-radius: var(--radius) !important;
+  overflow: hidden;
+}
+.actionSheet,
+.dialog {
+  background: rgba(25, 25, 25, 0.92) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ---------- Frosted-glass top bar (lighter blur = smoother scrolling) ---------- */
+.skinHeader,
+.MuiAppBar-root {
+  background: rgba(18, 18, 18, 0.6) !important;
+  background-image: none !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow: none !important;
+}
+.MuiAppBar-root .MuiToolbar-root,
+.headerTop,
+.headerTabs {
+  background: transparent !important;
+}
+
+/* No highlight on top-bar buttons (filled buttons like "Play All" are left alone) */
+.MuiAppBar-root .MuiButtonBase-root:not(.MuiButton-contained),
+.MuiAppBar-root .MuiButtonBase-root:not(.MuiButton-contained):hover,
+.skinHeader .headerButton,
+.skinHeader .headerButton:hover,
+.skinHeader .headerButton:focus {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.MuiAppBar-root .MuiTouchRipple-root {
+  display: none !important;
+}
+
+/* Library toolbar "Play All" / "Shuffle" buttons: solid gold, dark text */
+.MuiButton-contained,
+.MuiButtonGroup-root .MuiButton-contained {
+  background: var(--gold) !important;
+  color: #111 !important;
+  box-shadow: none !important;
+}
+.MuiButton-contained:hover {
+  background: #e0bd4a !important;
+}
+.MuiButton-contained svg {
+  color: #111 !important;
+}
+.MuiButtonGroup-root .MuiButtonGroup-grouped:not(:last-of-type) {
+  border-right-color: rgba(0, 0, 0, 0.35) !important;
+}
+
+/* ---------- Hide cast & SyncPlay icons ---------- */
+.headerCastButton,
+.headerSyncButton,
+.MuiAppBar-root [aria-label*="Cast" i],
+.MuiAppBar-root [aria-label*="Play on" i],
+.MuiAppBar-root [aria-label*="SyncPlay" i],
+.MuiAppBar-root .MuiIconButton-root:has(> svg[data-testid="CastIcon"]),
+.MuiAppBar-root .MuiIconButton-root:has(> svg[data-testid="CastConnectedIcon"]),
+.MuiAppBar-root .MuiIconButton-root:has(> svg[data-testid="GroupIcon"]),
+.MuiAppBar-root .MuiIconButton-root:has(> svg[data-testid="GroupsIcon"]) {
+  display: none !important;
+}
+
+/* ---------- List rows / menu items / tabs ---------- */
+.listItem,
+.actionSheetMenuItem,
+.navMenuOption,
+.emby-tab-button {
+  border-radius: calc(var(--radius) * 0.5) !important;
+}
+
+/* Icons turn gold (not blue) on hover */
+.paper-icon-button-light:hover,
+.paper-icon-button-light:focus,
+.detailButton:hover,
+.detailButton:focus,
+.cardOverlayButton:hover,
+.emby-tab-button:hover {
+  color: var(--gold) !important;
+}
+.btnPlay.detailButton:hover,
+.btnPlay.detailButton:focus {
+  color: #111 !important;
+}
+
+/* Active tab & selected sidebar item */
+.emby-tab-button-active,
+.navMenuOption-selected {
+  color: var(--gold) !important;
+}
+.emby-tab-button { position: relative; }
+.emby-tab-button-active::after {
+  content: "";
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: 2px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 999px;
+}
+
+/* Section headers */
+.sectionTitle,
+.sectionTitleTextButton {
+  color: var(--gold) !important;
+}
+
+/* ---------- Gold accents (replacing Jellyfin's blue) ---------- */
+.countIndicator,
+.playedIndicator,
+.button-submit {
+  background: var(--gold) !important;
+  color: #111 !important;
+}
+.itemProgressBar,
+.itemProgressBarForeground {
+  border-radius: 999px;
+}
+.itemProgressBarForeground {
+  background: var(--gold) !important;
+}
+
+/* Video player seek bar & knob */
+.mdl-slider-background-lower {
+  background: var(--gold) !important;
+}
+.mdl-slider::-webkit-slider-thumb {
+  background: var(--gold) !important;
+}
+.mdl-slider::-moz-range-thumb {
+  background: var(--gold) !important;
+}
+.sliderBubble {
+  background: var(--gold) !important;
+  color: #111 !important;
+}
+
+/* Checkboxes, toggles, radios */
+.emby-checkbox:checked + span + .checkboxOutline {
+  background-color: var(--gold) !important;
+  border-color: var(--gold) !important;
+}
+.mdl-switch__input:checked + .mdl-switch__label + .mdl-switch__track {
+  background: rgba(212, 175, 55, 0.5) !important;
+}
+.mdl-switch__input:checked ~ .mdl-switch__thumb {
+  background: var(--gold) !important;
+}
+.mdl-radio__inner-circle {
+  background: var(--gold) !important;
+}
+.mdl-radio__button:checked + .mdl-radio__label + .mdl-radio__outer-circle {
+  border-color: var(--gold) !important;
+}
+
+/* Text fields: gold border instead of blue when typing */
+.emby-input:focus,
+.emby-select:focus,
+.emby-textarea:focus {
+  border-color: var(--gold) !important;
+}
+
+/* Field labels & loading spinner */
+.inputLabelFocused,
+.selectLabelFocused,
+.textareaLabelFocused {
+  color: var(--gold) !important;
+}
+.mdl-spinner__layer {
+  border-color: var(--gold) !important;
+}
+
+/* ---------- Thin gold scrollbar ---------- */
+html { scrollbar-width: thin; scrollbar-color: var(--gold) transparent; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 999px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ---------- Login page banner (your own image, gold frame) ----------
+   Replace YOUR-IMAGE-URL with a direct link to your picture.
+   Don't want a banner? Delete this whole block. */
+#loginPage .manualLoginForm::before,
+#loginPage .visualLoginForm::before {
+  content: "";
+  display: block;
+  height: min(24vh, 220px);    /* banner size - shrinks on short screens */
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  margin: 0 auto 0.8em;
+  background: url("YOUR-IMAGE-URL") center / cover no-repeat;
+  border: var(--outline) solid var(--gold);
+  border-radius: var(--radius);
+}
+
+/* ---------- Compact login page so it fits without scrolling ---------- */
+#loginPage {
+  padding-top: 2.5em !important;
+}
+#loginPage .padded-left.padded-right {
+  padding-top: 0 !important;
+}
+#loginPage h1 {
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+  margin: 0.2em 0 0.4em !important;
+  font-size: 1.1em !important;
+  font-weight: 400 !important;
+  color: #ddd !important;      /* "Please sign in" as a small subtitle */
+}
+
+/* Server name title right under the picture */
+#loginPage h1::before {
+  content: "My Server";        /* change to your server name */
+  display: block;
+  font-size: 2.4em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  padding-left: 0.12em;        /* balances the letter spacing so it's truly centered */
+  color: var(--gold);
+  text-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
+  line-height: 1.1;
+  margin-bottom: 0.15em;
+}
+#loginPage .inputContainer {
+  margin-bottom: 0.8em !important;
+}
+#loginPage .checkboxContainer {
+  margin-bottom: 0.8em !important;
+}
+#loginPage .emby-button {
+  margin-top: 0.3em !important;
+  margin-bottom: 0.3em !important;
+  padding-top: 0.7em !important;
+  padding-bottom: 0.7em !important;
+}
+#loginPage .loginDisclaimerContainer,
+#loginPage .loginDisclaimer {
+  margin-top: 1em !important;
+  font-size: 1.05rem !important;   /* bottom quote text size */
+  text-align: center !important;
+  color: #ccc !important;
+}
