@@ -52,6 +52,8 @@ Near the bottom of the file:
 
 ## Screenshots
 
+*Preview mockups of the theme. Show titles and artwork are placeholders.*
+
 | Home | Show page | Login |
 |---|---|---|
 | ![](screenshots/home.png) | ![](screenshots/details.png) | ![](screenshots/login.png) |
