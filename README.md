@@ -2,8 +2,6 @@
 
 A rounded, dark and gold theme for [Jellyfin](https://jellyfin.org). Pure CSS, no plugins needed.
 
-![Home screen](screenshots/home.png)
-
 ## Features
 
 - Rounded posters, buttons, menus, dialogs and text fields
@@ -49,14 +47,6 @@ Near the bottom of the file:
 - Tested on the Jellyfin **web client** and the desktop app.
 - Works with both the classic layout and the newer experimental layout.
 - Native apps that don't use the web client, such as Swiftfin, Roku and the native Android TV app, ignore custom CSS.
-
-## Screenshots
-
-*Preview mockups of the theme. Show titles and artwork are placeholders.*
-
-| Home | Show page | Login |
-|---|---|---|
-| ![](screenshots/home.png) | ![](screenshots/details.png) | ![](screenshots/login.png) |
 
 ## License
 
