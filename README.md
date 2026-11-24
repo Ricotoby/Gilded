@@ -19,14 +19,25 @@ A rounded, dark and gold theme for [Jellyfin](https://jellyfin.org). Pure CSS, n
 ## Installation
 
 1. In Jellyfin, open **Dashboard → General**.
-2. Copy everything in [`gilded.css`](gilded.css) and paste it into **Custom CSS code**.
+2. Paste this one line into **Custom CSS code**:
+
+   ```css
+   @import url('https://cdn.jsdelivr.net/gh/Ricotoby/Gilded@main/gilded.css');
+   ```
+
 3. Click **Save**, then refresh the page with **Ctrl + F5**.
+
+You'll get theme updates automatically. They can take up to 12 hours to show up because of the CDN's cache.
+
+Prefer not to load from a link? Copy everything in [`gilded.css`](gilded.css) into **Custom CSS code** instead.
 
 ## Customizing
 
-All the main settings are at the top of `gilded.css`:
+Add your changes **below** the `@import` line. They override the theme's defaults.
 
 ```css
+@import url('https://cdn.jsdelivr.net/gh/Ricotoby/Gilded@main/gilded.css');
+
 :root {
   --radius: 20px;    /* corner roundness: 6px subtle, 28px very round */
   --gold: #d4af37;   /* accent color */
@@ -38,10 +49,18 @@ Change `--gold` to any color to turn Gilded into a different theme. For example,
 
 ### Login page
 
-Near the bottom of the file:
+The login banner and title are off by default. To turn them on, add this below the `@import` line:
 
-- **Banner image:** replace `YOUR-IMAGE-URL` with a direct link to your picture. The link must end in an image file such as `.png` or `.jpg`. To skip the banner, delete that block.
-- **Server name:** change `"My Server"` to your server's name.
+```css
+:root {
+  --login-banner: block;
+  --login-image: url("https://example.com/your-banner.png");
+  --server-name: "My Server";
+}
+```
+
+- **Banner image:** a direct link to your picture, ending in an image file such as `.png` or `.jpg`.
+- **Server name:** shown in large gold letters under the banner.
 - **Bottom text:** the quote under the sign-in buttons is Jellyfin's *Login disclaimer*, set in **Dashboard → General**.
 
 ## Compatibility

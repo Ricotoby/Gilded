@@ -10,6 +10,11 @@
   --radius: 20px;        /* corner roundness (6 subtle, 28 very round) */
   --gold: #d4af37;       /* highlight color */
   --outline: 3px;        /* highlight thickness */
+
+  /* Login page (optional) - set these in your own Custom CSS, see README */
+  --login-image: none;          /* e.g. url("https://example.com/banner.png") */
+  --login-banner: none;         /* set to block to show the banner */
+  --server-name: "";            /* e.g. "My Server" */
 }
 
 /* ---------- Poppins everywhere (icons keep their own font) ---------- */
@@ -263,18 +268,16 @@ html { scrollbar-width: thin; scrollbar-color: var(--gold) transparent; }
 ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 999px; }
 ::-webkit-scrollbar-track { background: transparent; }
 
-/* ---------- Login page banner (your own image, gold frame) ----------
-   Replace YOUR-IMAGE-URL with a direct link to your picture.
-   Don't want a banner? Delete this whole block. */
+/* ---------- Login page banner (optional, gold frame) ---------- */
 #loginPage .manualLoginForm::before,
 #loginPage .visualLoginForm::before {
   content: "";
-  display: block;
-  height: min(24vh, 220px);    /* banner size - shrinks on short screens */
+  display: var(--login-banner);
+  height: min(24vh, 220px);
   aspect-ratio: 16 / 9;
   max-width: 100%;
   margin: 0 auto 0.8em;
-  background: url("YOUR-IMAGE-URL") center / cover no-repeat;
+  background: var(--login-image) center / cover no-repeat;
   border: var(--outline) solid var(--gold);
   border-radius: var(--radius);
 }
@@ -298,7 +301,7 @@ html { scrollbar-width: thin; scrollbar-color: var(--gold) transparent; }
 
 /* Server name title right under the picture */
 #loginPage h1::before {
-  content: "My Server";        /* change to your server name */
+  content: var(--server-name);
   display: block;
   font-size: 2.4em;
   font-weight: 600;
